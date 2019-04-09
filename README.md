@@ -65,20 +65,11 @@ dependencies {
           if (resultCode == RESULT_OK) {
               if (requestCode == SELECT_FILE) {
                   Uri uri = data.getData();
-                  selectedPath = getRealPathFromURI(uri);
+                  selectedPath =GetRealPath.getPathFromUri(MainActivity.this,uri);  
+                  //GetRealPath.getPathFromUri() is Pre-define function which can convert uri to real path
               }
           }
       }
-
-❆ Get Real Path From Url Section
-      public String getRealPathFromURI(Uri contentUri) {
-              String [] proj      = {MediaStore.Images.Media.DATA};
-              Cursor cursor       = getContentResolver().query( contentUri, proj, null, null,null);
-              if (cursor == null) return null;
-              int column_index    = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-              cursor.moveToFirst();
-              return cursor.getString(column_index);
-          }
           
 ```
 * 2. Upload File With Data Using Multipart System. [Data Type POST PARAMS Types]..
