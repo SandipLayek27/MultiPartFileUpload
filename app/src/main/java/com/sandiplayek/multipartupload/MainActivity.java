@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv;
     String filePath = "/storage/emulated/0/DCIM/Camera/20190405_170246.jpg";
-    String UPLOAD_URL= "http://sudipchatterjee.com/multipartFileUpload/api/uploadFile.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
