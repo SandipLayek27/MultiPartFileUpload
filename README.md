@@ -23,7 +23,7 @@ AND
 
 ```sh
 dependencies {
-    implementation 'com.github.SandipLayek27:MultiPartFileUpload:1.0'
+    implementation 'com.github.SandipLayek27:MultiPartFileUpload:1.1'
 }
 ```
 
