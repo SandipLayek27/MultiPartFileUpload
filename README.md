@@ -125,7 +125,7 @@ SET YOUR URL TO URLListing.fileUpload Static Section.
 ```sh
     Hold File From API Section:-
     $fileData = isset($_FILES['myFile'])?$_FILES['myFile']:'';  
-    **myFile** As a static key part of this case. So, don't change this key part as you want. 
+    *myFile As a static key part of this case. So, don't change this key part as you want. 
       
     Hold Data From API Section:-
     $myData = isset($_POST['DATA'])?$_POST['DATA']:'';
