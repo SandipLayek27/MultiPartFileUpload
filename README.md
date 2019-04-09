@@ -23,7 +23,7 @@ AND
 
 ```sh
 dependencies {
-    compile 'com.github.SandipLayek27:SuperLoader-master_android:4.6'
+    implementation 'com.github.SandipLayek27:MultiPartFileUpload:1.0'
 }
 ```
 
