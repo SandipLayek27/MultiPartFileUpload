@@ -2,8 +2,8 @@ package com.sandiplayek.multipartupload;
 
 public class URLListing {
 
-    public static String ROOT = "http://sudipchatterjee.com/multipartFileUpload/api/";
-    public static String fileUpload = ROOT + "uploadFile.php";
-    public static String fileUploadData = ROOT + "uploadFileData.php";
-    public static String uploadData = ROOT + "uploadData.php";
+    public static String ROOT = "ROOT_URL";
+    public static String fileUpload = ROOT + "ONLY_FILE_UPLOAD_URL";
+    public static String fileUploadData = ROOT + "FILE_UPLOAD_WITH_DATA_URL";
+    public static String uploadData = ROOT + "ONLY_DATA_UPLOAD_URL";
 }

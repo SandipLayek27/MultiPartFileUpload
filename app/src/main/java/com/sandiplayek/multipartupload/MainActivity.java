@@ -11,13 +11,14 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     TextView tv;
-    String filePath = "/storage/emulated/0/DCIM/Camera/20190405_170246.jpg";
+    String filePath = "/storage/emulated/0/DCIM/Camera/20190405_170246.jpg";    //TESTING CASE IMAGE PATH
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.tv);
 
+        //TESTING PURPOSE JSON OBJECT
         JSONObject jsonObject = new JSONObject();
         try{
             jsonObject.put("FNAME","Sandip");
@@ -36,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         //UPLOAD ONLY FILE
-        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
+       /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
         multiPartUploadData.uploadFile(URLListing.fileUpload, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
                 tv.setText(msg);
             }
-        });
+        });*/
 
         //UPLOAD FILE WITH DATA
         /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject, filePath);
