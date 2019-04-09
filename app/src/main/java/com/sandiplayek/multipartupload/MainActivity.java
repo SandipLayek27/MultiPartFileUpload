@@ -27,22 +27,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //UPLOAD ONLY DATA
-        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
         multiPartUploadData.uploadFile(URLListing.uploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
                 tv.setText(msg);
             }
-        });
+        });*/
 
         //UPLOAD ONLY FILE
-        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
         multiPartUploadData.uploadFile(URLListing.fileUpload, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
                 tv.setText(msg);
             }
-        });*/
+        });
 
         //UPLOAD FILE WITH DATA
         /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject, filePath);
