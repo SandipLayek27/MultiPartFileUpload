@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+        multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{});
+
         //UPLOAD ONLY FILE
        /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
         multiPartUploadData.uploadFile(URLListing.fileUpload, new MultiPartUploadData.OnMultiPartResponseListener() {
