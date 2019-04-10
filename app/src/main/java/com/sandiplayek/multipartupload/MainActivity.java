@@ -36,8 +36,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
-        multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{});
+        //USING LAMBDA EXPRESSION
+       /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+        multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{
+            //RESPONSE FETCH TO msg
+        });*/
 
         //UPLOAD ONLY FILE
        /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
