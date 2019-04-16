@@ -70,6 +70,14 @@ dependencies {
               }
           }
       }
+      
+❆ Create JSONObject for File
+      JSONObject jsonObjectFileData = new JSONObject();
+        try{
+            jsonObjectFileData.put("myFile",selectedPath);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
           
 ```
 * 2. Upload File With Data Using Multipart System. [Data Type POST PARAMS Types]..
@@ -77,7 +85,7 @@ dependencies {
 ❆ 
 SET YOUR URL TO URLListing.fileUploadData Static Section.
 ❆ 
-    MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject, filePath);
+    MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject,jsonObjectFileData);
         multiPartUploadData.uploadFile(URLListing.fileUploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
@@ -104,7 +112,7 @@ SET YOUR URL TO URLListing.uploadData Static Section.
 ❆ 
 SET YOUR URL TO URLListing.fileUpload Static Section.
 ❆ 
-    MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
+    MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObjectFileData,"FILE");
         multiPartUploadData.uploadFile(URLListing.fileUpload, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
@@ -112,6 +120,34 @@ SET YOUR URL TO URLListing.fileUpload Static Section.
             }
         });
 ```
+
+* 2.A Upload File With Data Using Multipart System. [Data Type POST PARAMS Types][LAMBDA EXPRESSION]
+```sh
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject,jsonObjectFileData);
+                multiPartUploadData.uploadFile(URLListing.fileUploadData,(String msg)->{
+                    //RESPONSE FETCH FROM msg
+        });
+
+```
+
+* 3.A Upload Data. [Data Type POST PARAMS Types][LAMBDA EXPRESSION]
+```sh
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+                multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{
+                    //RESPONSE FETCH FROM msg
+        });
+
+```
+
+* 4.A Upload File.[Data Type POST PARAMS Types][LAMBDA EXPRESSION]
+```sh
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObjectFileData,"FILE");
+                multiPartUploadData.uploadFile(URLListing.fileUpload,(String msg)->{
+                    //RESPONSE FETCH FROM msg
+        });
+
+```
+
 * 4. PHP SECTION.
 ```sh
     Hold File From API Section:-
