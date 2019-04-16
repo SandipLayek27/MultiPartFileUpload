@@ -14,10 +14,12 @@ import org.json.JSONObject;
 public class MultiPartUploadData {
     Context context;
     JSONObject jsonObject;
+    JSONObject jsonObjectFileData;
     String filePath = "";
     String setFlagDesc = "";
     int setFlag = 0;
 
+    //ONLY DATA CONSTRUCTOR
     public MultiPartUploadData(Context context,  JSONObject jsonObject) {
         this.context = context;
         this.jsonObject = jsonObject;
@@ -25,17 +27,21 @@ public class MultiPartUploadData {
         setFlag = 2;
     }
 
-    public MultiPartUploadData(Context context,  String filePath) {
+    //ONLY FILE CONSTRUCTOR
+    public MultiPartUploadData(Context context,  JSONObject jsonObjectFileData, String flag) {
         this.context = context;
-        this.filePath = filePath;
+        flag = "FILE";
+        this.jsonObjectFileData = jsonObjectFileData;
         setFlagDesc = "UPLOAD FILE WITH OUT DATA USING MULTIPART";
         setFlag = 3;
     }
 
-    public MultiPartUploadData(Context context, JSONObject jsonObject, String filePath) {
+    //FILE WITH DATA CONSTRUCTOR
+    public MultiPartUploadData(Context context, JSONObject jsonObject, JSONObject jsonObjectFileData) {
         this.context = context;
         this.jsonObject = jsonObject;
         this.filePath = filePath;
+        this.jsonObjectFileData = jsonObjectFileData;
         setFlagDesc = "UPLOAD FILE WITH DATA USING MULTIPART";
         setFlag = 1;
     }
@@ -63,13 +69,13 @@ public class MultiPartUploadData {
                 String msg = "";
                 if(setFlag == 1){
                     UploadFileWithData u = new UploadFileWithData();
-                    msg = u.uploadFile(url,filePath,jsonObject);
+                    msg = u.uploadFile(url,jsonObject,jsonObjectFileData);
                 }else if(setFlag == 2){
                     UploadOnlyData u = new UploadOnlyData();
                     msg = u.uploadFile(url,jsonObject);
                 }else if(setFlag == 3){
                     UploadOnlyFile u = new UploadOnlyFile();
-                    msg = u.uploadFile(url,filePath);
+                    msg = u.uploadFile(url,jsonObjectFileData);
                 }else{
                     JSONObject jsonObjectResponse = new JSONObject();
                     try {

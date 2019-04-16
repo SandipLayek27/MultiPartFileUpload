@@ -18,8 +18,16 @@ import java.util.Iterator;
 public class UploadFileWithData {
     private int serverResponseCode;
     JSONObject jsonObjectResponse = new JSONObject();
-    public String uploadFile(String UPLOAD_URL,String file, JSONObject jsonObject) {
-
+    String fileKeyName = "";
+    String file = "";
+    public String uploadFile(String UPLOAD_URL, JSONObject jsonObject, JSONObject jsonObjectFileData) {
+        try{
+            Iterator<String> iterator = jsonObjectFileData.keys();
+            if(iterator.hasNext()){
+                fileKeyName = iterator.next();
+                file = jsonObjectFileData.get(fileKeyName).toString();
+            }
+        }catch (Exception e){e.printStackTrace();}
         String fileName = file;
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
@@ -46,11 +54,11 @@ public class UploadFileWithData {
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("ENCTYPE", "multipart/form-data");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("myFile", fileName);
+            conn.setRequestProperty(fileKeyName, fileName);
 
             dos = new DataOutputStream(conn.getOutputStream());
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"myFile\";filename=\"" + fileName + "\"" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\""+fileKeyName+"\";filename=\"" + fileName + "\"" + lineEnd);
 
             dos.writeBytes(lineEnd);
 

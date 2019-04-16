@@ -14,12 +14,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 
 public class UploadOnlyFile {
     private int serverResponseCode;
     JSONObject jsonObject = new JSONObject();
-    public String uploadFile(String UPLOAD_URL, String file) {
-
+    String fileKeyName = "";
+    String file = "";
+    public String uploadFile(String UPLOAD_URL, JSONObject jsonObjectFileData) {
+        try{
+            Iterator<String> iterator = jsonObjectFileData.keys();
+            if(iterator.hasNext()){
+                fileKeyName = iterator.next();
+                file = jsonObjectFileData.get(fileKeyName).toString();
+            }
+        }catch (Exception e){e.printStackTrace();}
         String fileName = file;
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
@@ -32,7 +41,6 @@ public class UploadOnlyFile {
 
         File sourceFile = new File(file);
         if (!sourceFile.isFile()) {
-            Log.e("Huzza", "Source File Does not exist");
             return null;
         }
 
@@ -47,11 +55,11 @@ public class UploadOnlyFile {
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("ENCTYPE", "multipart/form-data");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("myFile", fileName);
+            conn.setRequestProperty(fileKeyName, fileName);
 
             dos = new DataOutputStream(conn.getOutputStream());
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"myFile\";filename=\"" + fileName + "\"" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\""+fileKeyName+"\";filename=\"" + fileName + "\"" + lineEnd);
 
             dos.writeBytes(lineEnd);
 

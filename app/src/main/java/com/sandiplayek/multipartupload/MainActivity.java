@@ -9,16 +9,14 @@ import com.sandiplayek.mupload.MultiPartUploadData;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView tv;
-    String filePath = "/storage/emulated/0/DCIM/Camera/20190405_170246.jpg";    //TESTING CASE IMAGE PATH
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.tv);
 
-        //TESTING PURPOSE JSON OBJECT
+        //TESTING PURPOSE JSON OBJECT //////////////////////////////////////////////////////////////////////////
         JSONObject jsonObject = new JSONObject();
         try{
             jsonObject.put("FNAME","Sandip");
@@ -27,23 +25,16 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //UPLOAD ONLY DATA
-        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
-        multiPartUploadData.uploadFile(URLListing.uploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
-            @Override
-            public void onPostResponse(String msg) {
-                tv.setText(msg);
-            }
-        });*/
+        //TESTING PURPOSE FILE DATA JSON OBJECT FORMAT ////////////////////////////////////////////////////////////////////
+        JSONObject jsonObjectFileData = new JSONObject();
+        try{
+            jsonObjectFileData.put("myFile","/storage/emulated/0/DCIM/Camera/20190405_170246.jpg");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        //USING LAMBDA EXPRESSION
-       /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
-        multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{
-            //RESPONSE FETCH TO msg
-        });*/
-
-        //UPLOAD ONLY FILE
-       /* MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,filePath);
+        //UPLOAD ONLY FILE ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObjectFileData,"FILE");
         multiPartUploadData.uploadFile(URLListing.fileUpload, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
@@ -52,12 +43,40 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         //UPLOAD FILE WITH DATA
-        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject, filePath);
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject,jsonObjectFileData);
         multiPartUploadData.uploadFile(URLListing.fileUploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
             @Override
             public void onPostResponse(String msg) {
                 tv.setText(msg);
             }
+        });*/
+
+
+        //UPLOAD ONLY DATA /////////////////////////////////////////////////////////////////////////////////////////////////
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+        multiPartUploadData.uploadFile(URLListing.uploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
+            @Override
+            public void onPostResponse(String msg) {
+                tv.setText(msg);
+            }
+        });*/
+
+        //USING LAMBDA EXPRESSION UPLOAD ONLY DATA //////////////////////////////////////////////////////////////////////////
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);
+        multiPartUploadData.uploadFile(URLListing.uploadData,(String msg)->{
+            //RESPONSE FETCH FROM msg
+        });*/
+
+        //USING LAMBDA EXPRESSION UPLOAD ONLY FILE //////////////////////////////////////////////////////////////////////////
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObjectFileData,"FILE");
+        multiPartUploadData.uploadFile(URLListing.fileUpload,(String msg)->{
+            //RESPONSE FETCH FROM msg
+        });*/
+
+        //USING LAMBDA EXPRESSION UPLOAD FILE WITH DATA /////////////////////////////////////////////////////////////////////
+        /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject,jsonObjectFileData);
+        multiPartUploadData.uploadFile(URLListing.fileUploadData,(String msg)->{
+            //RESPONSE FETCH FROM msg
         });*/
     }
 }
