@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv;
+    String header = "dasjahdjahdjhdahdjhadhakdhahdahdkhadhkad";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //TESTING PURPOSE FILE DATA JSON OBJECT FORMAT ////////////////////////////////////////////////////////////////////
         JSONObject jsonObjectFileData = new JSONObject();
         try{
-            jsonObjectFileData.put("myFile","/storage/emulated/0/DCIM/Camera/20190405_170246.jpg");
+            jsonObjectFileData.put("myFile","/storage/emulated/0/DCIM/Camera/20210121_180443.jpg");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -60,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
                 tv.setText(msg);
             }
         });*/
+
+        //UPLOAD FILE, DATA WITH HEADER /////////////////////////////////////////////////////////////////////////////////////////////////
+        /*
+        MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject,jsonObjectFileData,header);
+        multiPartUploadData.uploadFile(URLListing.fileUploadData, new MultiPartUploadData.OnMultiPartResponseListener() {
+            @Override
+            public void onPostResponse(String msg) {
+                tv.setText(msg);
+            }
+        });
+        */
 
         //USING LAMBDA EXPRESSION UPLOAD ONLY DATA //////////////////////////////////////////////////////////////////////////
         /*MultiPartUploadData multiPartUploadData = new MultiPartUploadData(MainActivity.this,jsonObject);

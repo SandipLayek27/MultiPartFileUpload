@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.sandiplayek.mupload.through.UploadFileWithData;
+import com.sandiplayek.mupload.through.UploadFileWithDataAndHeader;
 import com.sandiplayek.mupload.through.UploadOnlyData;
 import com.sandiplayek.mupload.through.UploadOnlyFile;
 
@@ -17,6 +18,7 @@ public class MultiPartUploadData {
     JSONObject jsonObjectFileData;
     String filePath = "";
     String setFlagDesc = "";
+    String header = "";
     int setFlag = 0;
 
     //ONLY DATA CONSTRUCTOR
@@ -44,6 +46,17 @@ public class MultiPartUploadData {
         this.jsonObjectFileData = jsonObjectFileData;
         setFlagDesc = "UPLOAD FILE WITH DATA USING MULTIPART";
         setFlag = 1;
+    }
+
+    //FILE WITH DATA CONSTRUCTOR
+    public MultiPartUploadData(Context context, JSONObject jsonObject, JSONObject jsonObjectFileData, String header) {
+        this.context = context;
+        this.jsonObject = jsonObject;
+        this.filePath = filePath;
+        this.jsonObjectFileData = jsonObjectFileData;
+        this.header = header;
+        setFlagDesc = "UPLOAD FILE WITH DATA USING MULTIPART";
+        setFlag = 4;
     }
 
     public void uploadFile(final String url, final OnMultiPartResponseListener onMultiPartResponseListener) {
@@ -76,6 +89,9 @@ public class MultiPartUploadData {
                 }else if(setFlag == 3){
                     UploadOnlyFile u = new UploadOnlyFile();
                     msg = u.uploadFile(url,jsonObjectFileData);
+                }else if(setFlag == 4){
+                    UploadFileWithDataAndHeader u = new UploadFileWithDataAndHeader();
+                    msg = u.uploadFile(url,jsonObject,jsonObjectFileData,header);
                 }else{
                     JSONObject jsonObjectResponse = new JSONObject();
                     try {
