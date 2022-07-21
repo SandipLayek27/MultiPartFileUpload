@@ -51,7 +51,8 @@ public class UploadFileWithData {
             conn.setDoOutput(true);
             conn.setUseCaches(false);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
+            //conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("connection", "close");
             conn.setRequestProperty("ENCTYPE", "multipart/form-data");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
             conn.setRequestProperty(fileKeyName, fileName);

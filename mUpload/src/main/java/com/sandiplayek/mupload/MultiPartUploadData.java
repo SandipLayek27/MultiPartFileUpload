@@ -25,7 +25,7 @@ public class MultiPartUploadData {
     public MultiPartUploadData(Context context,  JSONObject jsonObject) {
         this.context = context;
         this.jsonObject = jsonObject;
-        setFlagDesc = "INSERT ONLY DATA USING MULTIPART";
+        setFlagDesc = "Uploading Data";
         setFlag = 2;
     }
 
@@ -34,7 +34,7 @@ public class MultiPartUploadData {
         this.context = context;
         flag = "FILE";
         this.jsonObjectFileData = jsonObjectFileData;
-        setFlagDesc = "UPLOAD FILE WITH OUT DATA USING MULTIPART";
+        setFlagDesc = "Uploading Data";
         setFlag = 3;
     }
 
@@ -44,7 +44,7 @@ public class MultiPartUploadData {
         this.jsonObject = jsonObject;
         this.filePath = filePath;
         this.jsonObjectFileData = jsonObjectFileData;
-        setFlagDesc = "UPLOAD FILE WITH DATA USING MULTIPART";
+        setFlagDesc = "Uploading Data";
         setFlag = 1;
     }
 
@@ -55,7 +55,7 @@ public class MultiPartUploadData {
         this.filePath = filePath;
         this.jsonObjectFileData = jsonObjectFileData;
         this.header = header;
-        setFlagDesc = "UPLOAD FILE WITH DATA USING MULTIPART";
+        setFlagDesc = "Uploading Data";
         setFlag = 4;
     }
 
